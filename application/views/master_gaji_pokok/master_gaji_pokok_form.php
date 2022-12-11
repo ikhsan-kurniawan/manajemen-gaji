@@ -8,17 +8,17 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Nama Master <?= form_error('nama_master') ?></label>
+                            <label class="col-md-2" for="varchar">Nama Master Gaji<?= form_error('nama_master') ?></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="nama_master" id="nama_master" placeholder="Nama Master" value="<?= $nama_master; ?>" />
+                                <input autocomplete="off" type="text" class="form-control" name="nama_master" id="nama_master" placeholder="Nama Master Gaji" value="<?= $nama_master; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Gaji Master <?= form_error('gaji_master') ?></label>
+                            <label class="col-md-2" for="int">Nominal Gaji Pokok <?= form_error('gaji_master') ?></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control uang" name="gaji_master" id="gaji_master" placeholder="Gaji Master" value="<?= $gaji_master; ?>" />
+                                <input autocomplete="off" type="text" class="form-control uang" name="gaji_master" id="gaji_master" placeholder="Nominal Gaji Pokok" value="<?= $gaji_master; ?>" />
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Karyawan</th>
-                                <th>Waktu Gaji</th>
+                                <th>Gaji Periode</th>
                                 <!-- <th>Master Gaji</th> -->
                                 <th>Nominal Gaji</th>
                                 <th>Bonus Gaji</th>

@@ -59,8 +59,6 @@ class Karyawan_model extends CI_Model
         $this->db->or_like('jenis_kelamin', $q);
         $this->db->or_like('alamat', $q);
         $this->db->or_like('tanggal_lahir', $q);
-        $this->db->or_like('username', $q);
-        $this->db->or_like('password', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }

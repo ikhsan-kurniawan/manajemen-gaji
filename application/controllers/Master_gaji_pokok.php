@@ -59,9 +59,9 @@ class Master_gaji_pokok extends CI_Controller
             $gaji_master = str_replace(array('Rp', '.'), array('', ''), $this->input->post('gaji_master', TRUE));
 
             $data = array(
-                'nama_master' => $gaji_master,
+                'nama_master' => $this->input->post('nama_master', TRUE),
                 // 'nama_master' => $this->input->post('nama_master',TRUE),
-                'gaji_master' => $this->input->post('gaji_master', TRUE),
+                'gaji_master' => $gaji_master
             );
 
             $this->Master_gaji_pokok_model->insert($data);

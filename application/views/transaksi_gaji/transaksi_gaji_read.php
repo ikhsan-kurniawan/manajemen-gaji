@@ -12,7 +12,7 @@
 							<td><?= $id_transaksi; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Waktu Gaji</b></td>
+							<td width="20%"><b>Periode Gaji</b></td>
 							<td><?= $waktu_gaji; ?></td>
 						</tr>
 						<tr>
@@ -36,7 +36,7 @@
 							<td class="uang"><?= $bonus_gaji; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Nominal Gaji</b></td>
+							<td width="20%"><b>Total Gaji</b></td>
 							<td class="uang"><?= $total; ?></td>
 						</tr>
 						<tr>

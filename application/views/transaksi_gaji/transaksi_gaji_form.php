@@ -14,7 +14,7 @@
                                 <select class="form-control select2" name="id_karyawan" id="id_karyawan">
                                     <option selected disabled value> -- pilih karyawan -- </option>
                                     <?php foreach ($karyawan as $value) { ?>
-                                        <option value="<?= $value->id_karyawan ?>" <?php if ($value->id_karyawan == $id_karyawan) { ?> selected <?php } ?>><?= $value->id_karyawan ?> - <?= $value->nama_karyawan ?>
+                                        <option value="<?= $value->id_karyawan ?>" <?php if ($value->id_karyawan == $id_karyawan) { ?> selected <?php } ?>><?= $value->id_karyawan ?> - <?= $value->nama_karyawan ?> - <?= $value->nama_jabatan; ?>
                                         </option>
                                     <?php } ?>
                                 </select>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Master Gaji <?= form_error('id_master') ?></label>
+                            <label class="col-md-2" for="int">Nominal Gaji <?= form_error('id_master') ?></label>
                             <div class="col-md-6">
                                 <!-- <input type="text" class="form-control" name="id_master" id="id_master" placeholder="Id Master" value="<?= $id_master; ?>" /> -->
                                 <select class="form-control select2" name="id_master" id="id_master">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="date">Waktu Gaji <?= form_error('waktu_gaji') ?></label>
+                            <label class="col-md-2" for="date">Periode Gaji <?= form_error('waktu_gaji') ?></label>
                             <div class="col-md-6">
                                 <input type="month" class="form-control" name="waktu_gaji" id="waktu_gaji" placeholder="Waktu Gaji" value="<?= $waktu_gaji; ?>" />
                             </div>
@@ -64,7 +64,7 @@
                         <div class="row">
                             <label class="col-md-2" for="varchar">Keterangan <?= form_error('keterangan') ?></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" value="<?= $keterangan; ?>" />
+                                <input autocomplete="off" type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" value="<?= $keterangan; ?>" />
                             </div>
                         </div>
                     </div>

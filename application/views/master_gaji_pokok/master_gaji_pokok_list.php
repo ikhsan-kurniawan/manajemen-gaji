@@ -13,8 +13,8 @@
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Nama Master</th>
-                                <th>Gaji Master</th>
+                                <th>Nama Master Gaji</th>
+                                <th>Nominal Gaji Pokok</th>
                                 <th width="15%">Aksi</th>
                             </tr>
                         </thead>

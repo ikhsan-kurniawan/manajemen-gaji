@@ -8,7 +8,23 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Id Jabatan <?= form_error('id_jabatan') ?></label>
+                            <label class="col-md-2" for="int">NIK <?= form_error('nik') ?></label>
+                            <div class="col-md-6">
+                                <input autocomplete="off" type="text" class="form-control" name="nik" id="nik" placeholder="Nomor Induk Kependudukan" value="<?= $nik; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Nama Karyawan <?= form_error('nama_karyawan') ?></label>
+                            <div class="col-md-6">
+                                <input autocomplete="off" type="text" class="form-control" name="nama_karyawan" id="nama_karyawan" placeholder="Nama Karyawan" value="<?= $nama_karyawan; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="int">Jabatan <?= form_error('id_jabatan') ?></label>
                             <div class="col-md-6">
                                 <!-- <input type="text" class="form-control" name="id_jabatan" id="id_jabatan" placeholder="Id Jabatan" value="<?= $id_jabatan; ?>" /> -->
                                 <select class="form-control select2" name="id_jabatan" id="id_jabatan">
@@ -18,22 +34,6 @@
                                         </option>
                                     <?php } ?>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="int">NIK <?= form_error('nik') ?></label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Nik" value="<?= $nik; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Nama Karyawan <?= form_error('nama_karyawan') ?></label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan" placeholder="Nama Karyawan" value="<?= $nama_karyawan; ?>" />
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="row">
                             <label class="col-md-2" for="varchar">Alamat <?= form_error('alamat') ?></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?= $alamat; ?>" />
+                                <input autocomplete="off" type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?= $alamat; ?>" />
                             </div>
                         </div>
                     </div>

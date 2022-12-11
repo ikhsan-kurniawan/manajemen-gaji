@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <th>2</th>
-                            <td>Bonus</td>
+                            <td>Bonus Gaji</td>
                             <td>Rp <?= number_format($bonus_gaji, 0, ',', '.');  ?></td>
                         </tr>
                         <tr>

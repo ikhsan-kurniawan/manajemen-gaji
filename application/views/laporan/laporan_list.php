@@ -11,7 +11,7 @@
                             <div class="info-box">
                                 <span class="info-box-icon bg-green"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Jumlah Gaji</span>
+                                    <span class="info-box-text">Jumlah Data Gaji</span>
                                     <span class="info-box-number"><?= $baris_gaji; ?></span>
                                 </div>
                             </div>
@@ -20,7 +20,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div style="padding-left: 15px; padding-bottom: 15px;">
                             <div class="info-box">
-                                <span class="info-box-icon bg-red"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                <span class="info-box-icon bg-red"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Jabatan</span>
                                     <span class="info-box-number"><?= $jabatan; ?></span>

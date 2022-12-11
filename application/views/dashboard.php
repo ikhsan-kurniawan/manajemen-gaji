@@ -1,5 +1,5 @@
 <div>
-        <h3>Selamat Datang <?= $this->session->userdata('nama_lengkap'); ?></h3>
+        <h3>Selamat Datang <?= $this->session->userdata('nama'); ?></h3>
 </div>
 <div class="row">
 

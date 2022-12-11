@@ -46,7 +46,7 @@ class Login extends CI_Controller
 			$where = array(
 				'username' => $username
 			);
-			$cek = $this->Login_model->cek_login("karyawan", $where)->row_array();
+			$cek = $this->Login_model->cek_login("admin", $where)->row_array();
 			if ($cek['username'] == $username && $cek['password'] != NULL) {
 				$hash = $cek['password'];
 				if (password_verify($password, $hash)) {
@@ -54,9 +54,9 @@ class Login extends CI_Controller
 
 					$data_session = array(
 						'nama'         => $username,
-						'nama_lengkap' => $cek['nama_karyawan'],
-						'jabatan' 		=> $cek['id_jabatan'],
-						'id'         	=> $cek['id_karyawan'],
+						// 'nama_lengkap' => $cek['nama_karyawan'],
+						// 'jabatan' 		=> $cek['id_jabatan'],
+						'id'         	=> $cek['id_admin'],
 						'akses'         => 'admin',
 						'status'       => "login_ci",
 					);

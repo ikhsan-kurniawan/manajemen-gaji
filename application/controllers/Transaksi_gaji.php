@@ -60,7 +60,7 @@ class Transaksi_gaji extends CI_Controller
     public function create()
     {
         $this->load->model('Karyawan_model');
-        $karyawan = $this->db->select('id_karyawan, nama_karyawan')->from('karyawan')->get()->result();
+        $karyawan = $this->db->select('*')->from('karyawan')->join('jabatan', 'jabatan.id_jabatan = karyawan.id_jabatan', 'left')->get()->result();
 
         $this->load->model('Master_gaji_pokok_model');
         $master = $this->db->select('*')->from('master_gaji_pokok')->get()->result();
@@ -79,6 +79,8 @@ class Transaksi_gaji extends CI_Controller
             'karyawan' => $karyawan,
             'master' => $master,
         );
+        // print_r($karyawan);
+        // die;
         $this->template->load('template', 'transaksi_gaji/transaksi_gaji_form', $data);
     }
 
