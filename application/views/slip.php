@@ -22,10 +22,10 @@
                 <div class="fw-normal text-center">Slip Gaji Karyawan</div>
                 <table class="mt-4 table table-bordered">
                     <tr>
-                        <th>Nama Karyawan</th>
+                        <th style="width:20%">Nama Karyawan</th>
                         <td><?= $nama_karyawan; ?></td>
                         <td style="width:20%"></td>
-                        <th>Gaji Periode</th>
+                        <th style="width:20%">Gaji Periode</th>
                         <td><?= $waktu_gaji; ?></td>
                     </tr>
                     <tr>
