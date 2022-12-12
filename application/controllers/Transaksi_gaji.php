@@ -118,8 +118,7 @@ class Transaksi_gaji extends CI_Controller
     {
         $row = $this->Transaksi_gaji_model->get_by_id($id);
 
-        $karyawan = $this->db->select('id_karyawan, nama_karyawan')->from('karyawan')->get()->result();
-
+        $karyawan = $this->db->select('*')->from('karyawan')->join('jabatan', 'jabatan.id_jabatan = karyawan.id_jabatan', 'left')->get()->result();
         $master = $this->db->select('*')->from('master_gaji_pokok')->get()->result();
 
         if ($row) {
