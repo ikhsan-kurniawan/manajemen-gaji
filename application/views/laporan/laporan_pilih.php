@@ -11,7 +11,7 @@
                         <div class="row">
                             <label class="col-md-2" for="int">Karyawan <?= form_error('id_karyawan') ?></label>
                             <div class="col-md-6">
-                                <select class="form-control select2" name="id_karyawan" id="id_karyawan">
+                                <select required class="form-control select2" name="id_karyawan" id="id_karyawan">
                                     <option selected disabled value> -- pilih karyawan -- </option>
                                     <?php foreach ($karyawan as $value) { ?>
                                         <option value="<?= $value->id_karyawan ?>"><?= $value->nama_karyawan ?>

@@ -32,6 +32,14 @@
 							<td class="uang"><?= $nominal_gaji; ?></td>
 						</tr>
 						<tr>
+							<td width="20%"><b>Persen Pajak</b></td>
+							<td><?= $persen_pajak; ?>%</td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Potongan Pajak</b></td>
+							<td class="uang"><?= $potongan_pajak; ?></td>
+						</tr>
+						<tr>
 							<td width="20%"><b>Bonus Gaji</b></td>
 							<td class="uang"><?= $bonus_gaji; ?></td>
 						</tr>

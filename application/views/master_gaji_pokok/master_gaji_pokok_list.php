@@ -15,6 +15,7 @@
                                 <th width="5%">No</th>
                                 <th>Nama Master Gaji</th>
                                 <th>Nominal Gaji Pokok</th>
+                                <th>Persen Pajak</th>
                                 <th width="15%">Aksi</th>
                             </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                     <td><?= $no++; ?></td>
                                     <td><?= $master_gaji_pokok->nama_master ?></td>
                                     <td class="uang"><?= $master_gaji_pokok->gaji_master ?></td>
+                                    <td><?= $master_gaji_pokok->persen_pajak ?>%</td>
                                     <td style="text-align:center">
                                         <a href="<?= site_url('master_gaji_pokok/read/' . $master_gaji_pokok->id_master) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         <a href="<?= site_url('master_gaji_pokok/update/' . $master_gaji_pokok->id_master) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>

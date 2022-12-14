@@ -16,7 +16,7 @@ class Karyawan_model extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('id_karyawan,id_jabatan,nik,nama_karyawan,jenis_kelamin,alamat,tanggal_lahir,username,password');
+        $this->datatables->select('id_karyawan,id_jabatan,nik,nama_karyawan,jenis_kelamin,alamat,tanggal_lahir');
         $this->datatables->from('karyawan');
         //add this line for join
         //$this->datatables->join('table2', 'karyawan.field = table2.field');
@@ -74,8 +74,6 @@ class Karyawan_model extends CI_Model
         $this->db->or_like('jenis_kelamin', $q);
         $this->db->or_like('alamat', $q);
         $this->db->or_like('tanggal_lahir', $q);
-        $this->db->or_like('username', $q);
-        $this->db->or_like('password', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

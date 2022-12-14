@@ -46,7 +46,9 @@ class Transaksi_gaji extends CI_Controller
                 'nama_master' => $row->nama_master,
                 'nama_karyawan' => $row->nama_karyawan,
                 'gaji_master' => $row->gaji_master,
-                'total' => ($row->gaji_master) + ($row->bonus_gaji),
+                'total' => ($row->gaji_master) + ($row->bonus_gaji) - ($row->potongan_pajak),
+                'potongan_pajak' => $row->potongan_pajak,
+                'persen_pajak' => $row->persen_pajak,
                 'jabatan' => $row->nama_jabatan,
 
             );
@@ -95,6 +97,8 @@ class Transaksi_gaji extends CI_Controller
 
             // $nominal = array($master[0]->gaji_master, $this->input->post('bonus_gaji'));
             $nominal = (int)$master->gaji_master;
+            $persen_pajak = (int)$master->persen_pajak;
+            $pajak = ($persen_pajak/100)*$nominal;
             $bonus_gaji = str_replace(array('Rp', '.'), array('', ''), $this->input->post('bonus_gaji', TRUE));
 
             $data = array(
@@ -105,6 +109,7 @@ class Transaksi_gaji extends CI_Controller
                 // 'bonus_gaji' => $this->input->post('bonus_gaji', TRUE),
                 // 'nominal_gaji' => array_sum($nominal),
                 'nominal_gaji' => ($nominal),
+                'potongan_pajak' => ($pajak),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
 
@@ -153,6 +158,8 @@ class Transaksi_gaji extends CI_Controller
 
             // $nominal = array($master[0]->gaji_master, $this->input->post('bonus_gaji'));
             $nominal = (int)$master->gaji_master;
+            $persen_pajak = (int)$master->persen_pajak;
+            $pajak = ($persen_pajak/100)*$nominal;
             $bonus_gaji = str_replace(array('Rp', '.'), array('', ''), $this->input->post('bonus_gaji', TRUE));
 
             $data = array(
@@ -162,6 +169,7 @@ class Transaksi_gaji extends CI_Controller
                 'bonus_gaji' => $bonus_gaji,
                 // 'nominal_gaji' => array_sum($nominal),
                 'nominal_gaji' => ($nominal),
+                'potongan_pajak' => ($pajak),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
 
@@ -197,6 +205,7 @@ class Transaksi_gaji extends CI_Controller
                 'waktu_gaji' => $this->tanggal_indo($row->waktu_gaji),
                 'bonus_gaji' => $row->bonus_gaji,
                 'nominal_gaji' => $row->nominal_gaji,
+                'potongan_pajak' => $row->potongan_pajak,
                 'keterangan' => $row->keterangan,
                 'nama_master' => $row->nama_master,
                 'nama_karyawan' => $row->nama_karyawan,
@@ -204,7 +213,7 @@ class Transaksi_gaji extends CI_Controller
                 'jabatan' => $row->nama_jabatan,
                 'alamat' => $row->alamat,
                 'tanggal_sekarang' => $this->tanggal_indo(date("Y-m-d")),
-                'total' => ($row->gaji_master) + ($row->bonus_gaji),
+                'total' => ($row->gaji_master) + ($row->bonus_gaji) - ($row->potongan_pajak),
             );
 
             $mpdf = new \Mpdf\Mpdf();

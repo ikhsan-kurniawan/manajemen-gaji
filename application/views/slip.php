@@ -64,6 +64,11 @@
                             <td>Rp <?= number_format($bonus_gaji, 0, ',', '.');  ?></td>
                         </tr>
                         <tr>
+                            <th>3</th>
+                            <td>Potongan Pajak</td>
+                            <td>Rp <?= number_format($potongan_pajak, 0, ',', '.');  ?></td>
+                        </tr>
+                        <tr>
                             <td style="width:10%"></td>
                             <td colspan="2">
                                 <hr>
@@ -71,7 +76,7 @@
                         </tr>
                         <tr>
                             <th></th>
-                            <td>Jumlah</td>
+                            <td>Total gaji</td>
                             <td>Rp <?= number_format($total, 0, ',', '.');  ?></td>
                         </tr>
                     </tbody>

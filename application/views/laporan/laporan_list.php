@@ -35,8 +35,9 @@
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Karyawan</th>
-                                <th>Waktu Gaji</th>
+                                <th>Periode Gaji</th>
                                 <th>Nominal Gaji</th>
+                                <th>Potongan Pajak</th>
                                 <th>Bonus Gaji</th>
                                 <th>Total Gaji</th>
                                 <th>Keterangan</th>
@@ -52,8 +53,9 @@
                                     <td><?= $transaksi_gaji->nama_karyawan ?></td>
                                     <td><?= $transaksi_gaji->waktu_gaji ?></td>
                                     <td class="uang"><?= $transaksi_gaji->nominal_gaji ?></td>
+                                    <td class="uang"><?= $transaksi_gaji->potongan_pajak ?></td>
                                     <td class="uang"><?= $transaksi_gaji->bonus_gaji ?></td>
-                                    <td class="uang"><?= ($transaksi_gaji->nominal_gaji) + ($transaksi_gaji->bonus_gaji) ?></td>
+                                    <td class="uang"><?= ($transaksi_gaji->nominal_gaji) + ($transaksi_gaji->bonus_gaji) - ($transaksi_gaji->potongan_pajak)?></td>
                                     <td><?= $transaksi_gaji->keterangan ?></td>
                                     <td style="text-align:center">
                                         <a href="<?= site_url('transaksi_gaji/read/' . $transaksi_gaji->id_transaksi) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>

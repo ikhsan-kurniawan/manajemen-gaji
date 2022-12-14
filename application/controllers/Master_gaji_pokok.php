@@ -29,6 +29,7 @@ class Master_gaji_pokok extends CI_Controller
                 'id_master' => $row->id_master,
                 'nama_master' => $row->nama_master,
                 'gaji_master' => $row->gaji_master,
+                'persen_pajak' => $row->persen_pajak,
             );
             $this->template->load('template', 'master_gaji_pokok/master_gaji_pokok_read', $data);
         } else {
@@ -45,6 +46,7 @@ class Master_gaji_pokok extends CI_Controller
             'id_master' => set_value('id_master'),
             'nama_master' => set_value('nama_master'),
             'gaji_master' => set_value('gaji_master'),
+            'persen_pajak' => set_value('persen_pajak'),
         );
         $this->template->load('template', 'master_gaji_pokok/master_gaji_pokok_form', $data);
     }
@@ -61,7 +63,8 @@ class Master_gaji_pokok extends CI_Controller
             $data = array(
                 'nama_master' => $this->input->post('nama_master', TRUE),
                 // 'nama_master' => $this->input->post('nama_master',TRUE),
-                'gaji_master' => $gaji_master
+                'gaji_master' => $gaji_master,
+                'persen_pajak' => $this->input->post('persen_pajak', TRUE)
             );
 
             $this->Master_gaji_pokok_model->insert($data);
@@ -81,6 +84,7 @@ class Master_gaji_pokok extends CI_Controller
                 'id_master' => set_value('id_master', $row->id_master),
                 'nama_master' => set_value('nama_master', $row->nama_master),
                 'gaji_master' => set_value('gaji_master', $row->gaji_master),
+                'persen_pajak' => set_value('persen_pajak', $row->persen_pajak),
             );
             $this->template->load('template', 'master_gaji_pokok/master_gaji_pokok_form', $data);
         } else {
@@ -101,6 +105,7 @@ class Master_gaji_pokok extends CI_Controller
             $data = array(
                 'nama_master' => $this->input->post('nama_master', TRUE),
                 'gaji_master' => $gaji_master,
+                'persen_pajak' => $this->input->post('persen_pajak', TRUE),
                 // 'gaji_master' => $this->input->post('gaji_master', TRUE),
             );
 
@@ -128,6 +133,7 @@ class Master_gaji_pokok extends CI_Controller
     {
         $this->form_validation->set_rules('nama_master', 'nama master', 'trim|required');
         $this->form_validation->set_rules('gaji_master', 'gaji master', 'trim|required');
+        $this->form_validation->set_rules('persen_pajak', 'persen pajak', 'trim|required');
 
         $this->form_validation->set_rules('id_master', 'id_master', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

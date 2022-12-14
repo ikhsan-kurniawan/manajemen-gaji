@@ -24,6 +24,19 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
+                            <label class="col-md-2" for="int">Persen Pajak <?= form_error('persen_pajak') ?></label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="persen_pajak" id="persen_pajak">
+                                    <option selected disabled> -- pilih persen pajak -- </option>
+                                    <option value="0" <?php if ($persen_pajak == "0") { ?> selected <?php } ?>>0%</option>
+                                    <option value="5" <?php if ($persen_pajak == "5") { ?> selected <?php } ?>>5%</option>
+                                    <option value="11" <?php if ($persen_pajak == "11") { ?> selected <?php } ?>>11%</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
                             <div class="col-md-6 col-md-offset-2">
                                 <input type="hidden" name="id_master" value="<?= $id_master; ?>" />
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> <?= $button ?></button>

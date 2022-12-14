@@ -16,7 +16,7 @@ class Transaksi_gaji_model extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('id_transaksi,id_karyawan,id_master,waktu_gaji,bonus_gaji,nominal_gaji,keterangan');
+        $this->datatables->select('id_transaksi,id_karyawan,id_master,waktu_gaji,bonus_gaji,nominal_gaji, potongan_pajak,keterangan');
         $this->datatables->from('transaksi_gaji');
         //add this line for join
         //$this->datatables->join('table2', 'transaksi_gaji.field = table2.field');
@@ -61,6 +61,7 @@ class Transaksi_gaji_model extends CI_Model
         $this->db->or_like('waktu_gaji', $q);
         $this->db->or_like('bonus_gaji', $q);
         $this->db->or_like('nominal_gaji', $q);
+        $this->db->or_like('potongan_pajak', $q);
         $this->db->or_like('keterangan', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
@@ -76,6 +77,7 @@ class Transaksi_gaji_model extends CI_Model
         $this->db->or_like('waktu_gaji', $q);
         $this->db->or_like('bonus_gaji', $q);
         $this->db->or_like('nominal_gaji', $q);
+        $this->db->or_like('potongan_pajak', $q);
         $this->db->or_like('keterangan', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

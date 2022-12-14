@@ -19,6 +19,10 @@
 							<td width="20%"><b>Gaji Master</b></td>
 							<td class="uang"><?= $gaji_master; ?></td>
 						</tr>
+						<tr>
+							<td width="20%"><b>Persen Pajak</b></td>
+							<td><?= $persen_pajak; ?>%</td>
+						</tr>
 					</table>
 					<a href="<?= site_url('master_gaji_pokok') ?>" class="btn btn-danger pull-right">
 						<i class="fa fa-sign-out"></i> Kembali

@@ -15,7 +15,7 @@ class Master_gaji_pokok_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_master,nama_master,gaji_master');
+        $this->datatables->select('id_master,nama_master,gaji_master, persen_pajak');
         $this->datatables->from('master_gaji_pokok');
         //add this line for join
         //$this->datatables->join('table2', 'master_gaji_pokok.field = table2.field');
@@ -44,6 +44,7 @@ class Master_gaji_pokok_model extends CI_Model
         $this->db->like('id_master', $q);
 		$this->db->or_like('nama_master', $q);
 		$this->db->or_like('gaji_master', $q);
+		$this->db->or_like('persen_pajak', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
