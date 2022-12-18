@@ -39,6 +39,10 @@ class Master_gaji_pokok_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
     
+    function jumlah(){
+        return $this->db->count_all_results($this->table);
+    }
+    
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_master', $q);

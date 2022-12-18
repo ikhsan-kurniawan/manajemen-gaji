@@ -38,6 +38,10 @@ class Jabatan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function jumlah(){
+        return $this->db->count_all_results($this->table);
+    }
     
     // get total rows
     function total_rows($q = NULL) {
