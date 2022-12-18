@@ -56,7 +56,7 @@
                         <tr>
                             <th>1</th>
                             <td>Gaji Pokok</td>
-                            <td>Rp <?= number_format($gaji_master, 0, ',', '.');  ?></td>
+                            <td>Rp <?= number_format($nominal_gaji, 0, ',', '.');  ?></td>
                         </tr>
                         <tr>
                             <th>2</th>

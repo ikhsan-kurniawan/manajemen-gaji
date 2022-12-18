@@ -20,6 +20,7 @@ class Transaksi_gaji extends CI_Controller
             'transaksi_gaji_data' => $this->Transaksi_gaji_model->get_all(),
         );
 
+        // mengubah format tanggal 1-2022 menjadi januari 2022
         foreach ($data as $arr) {
             foreach ($arr as $key) {
                 $tanggal = $this->tanggal_indo($key->waktu_gaji);
@@ -37,20 +38,19 @@ class Transaksi_gaji extends CI_Controller
             $data = array(
                 'id_transaksi' => $row->id_transaksi,
                 'id_karyawan' => $row->id_karyawan,
-                'id_master' => $row->id_master,
+                // 'id_master' => $row->id_master,
                 // 'waktu_gaji' => $row->waktu_gaji,
                 'waktu_gaji' => $this->tanggal_indo($row->waktu_gaji),
                 'bonus_gaji' => $row->bonus_gaji,
                 'nominal_gaji' => $row->nominal_gaji,
-                'keterangan' => $row->keterangan,
-                'nama_master' => $row->nama_master,
-                'nama_karyawan' => $row->nama_karyawan,
-                'gaji_master' => $row->gaji_master,
-                'total' => ($row->gaji_master) + ($row->bonus_gaji) - ($row->potongan_pajak),
-                'potongan_pajak' => $row->potongan_pajak,
                 'persen_pajak' => $row->persen_pajak,
+                'potongan_pajak' => $row->potongan_pajak,
+                'keterangan' => $row->keterangan,
+                // 'nama_master' => $row->nama_master,
+                'nama_karyawan' => $row->nama_karyawan,
+                // 'gaji_master' => $row->gaji_master,
+                'total' => ($row->nominal_gaji) + ($row->bonus_gaji) - ($row->potongan_pajak),
                 'jabatan' => $row->nama_jabatan,
-
             );
             $this->template->load('template', 'transaksi_gaji/transaksi_gaji_read', $data);
         } else {
@@ -93,12 +93,14 @@ class Transaksi_gaji extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+            
+            // get data dan hitung pajak from master gaji
             $master = $this->db->get_where('master_gaji_pokok', array('id_master' => $this->input->post('id_master')))->row();
-
-            // $nominal = array($master[0]->gaji_master, $this->input->post('bonus_gaji'));
             $nominal = (int)$master->gaji_master;
             $persen_pajak = (int)$master->persen_pajak;
             $pajak = ($persen_pajak/100)*$nominal;
+
+            // replace string rupiah from form to int
             $bonus_gaji = str_replace(array('Rp', '.'), array('', ''), $this->input->post('bonus_gaji', TRUE));
 
             $data = array(
@@ -109,6 +111,7 @@ class Transaksi_gaji extends CI_Controller
                 // 'bonus_gaji' => $this->input->post('bonus_gaji', TRUE),
                 // 'nominal_gaji' => array_sum($nominal),
                 'nominal_gaji' => ($nominal),
+                'persen_pajak' => ($persen_pajak),
                 'potongan_pajak' => ($pajak),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
@@ -135,7 +138,7 @@ class Transaksi_gaji extends CI_Controller
                 'id_master' => set_value('id_master', $row->id_master),
                 'waktu_gaji' => set_value('waktu_gaji', $row->waktu_gaji),
                 'bonus_gaji' => set_value('bonus_gaji', $row->bonus_gaji),
-                'nominal_gaji' => set_value('nominal_gaji', $row->nominal_gaji),
+                // 'nominal_gaji' => set_value('nominal_gaji', $row->nominal_gaji),
                 'keterangan' => set_value('keterangan', $row->keterangan),
                 'karyawan' => $karyawan,
                 'master' => $master,
@@ -154,9 +157,9 @@ class Transaksi_gaji extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_transaksi', TRUE));
         } else {
+            
+            // mendapat data dan menghitung pajak dari master gaji
             $master = $this->db->get_where('master_gaji_pokok', array('id_master' => $this->input->post('id_master')))->row();
-
-            // $nominal = array($master[0]->gaji_master, $this->input->post('bonus_gaji'));
             $nominal = (int)$master->gaji_master;
             $persen_pajak = (int)$master->persen_pajak;
             $pajak = ($persen_pajak/100)*$nominal;
@@ -169,6 +172,7 @@ class Transaksi_gaji extends CI_Controller
                 'bonus_gaji' => $bonus_gaji,
                 // 'nominal_gaji' => array_sum($nominal),
                 'nominal_gaji' => ($nominal),
+                'persen_pajak' => ($persen_pajak),
                 'potongan_pajak' => ($pajak),
                 'keterangan' => $this->input->post('keterangan', TRUE),
             );
@@ -200,20 +204,19 @@ class Transaksi_gaji extends CI_Controller
             $data = array(
                 'id_transaksi' => $row->id_transaksi,
                 'id_karyawan' => $row->id_karyawan,
-                'id_master' => $row->id_master,
+                // 'id_master' => $row->id_master,
                 // 'waktu_gaji' => $row->waktu_gaji,
                 'waktu_gaji' => $this->tanggal_indo($row->waktu_gaji),
                 'bonus_gaji' => $row->bonus_gaji,
                 'nominal_gaji' => $row->nominal_gaji,
+                'persen_pajak' => $row->persen_pajak,
                 'potongan_pajak' => $row->potongan_pajak,
                 'keterangan' => $row->keterangan,
-                'nama_master' => $row->nama_master,
                 'nama_karyawan' => $row->nama_karyawan,
-                'gaji_master' => $row->gaji_master,
                 'jabatan' => $row->nama_jabatan,
                 'alamat' => $row->alamat,
                 'tanggal_sekarang' => $this->tanggal_indo(date("Y-m-d")),
-                'total' => ($row->gaji_master) + ($row->bonus_gaji) - ($row->potongan_pajak),
+                'total' => ($row->nominal_gaji) + ($row->bonus_gaji) - ($row->potongan_pajak),
             );
 
             $mpdf = new \Mpdf\Mpdf();

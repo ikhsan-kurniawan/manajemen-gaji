@@ -30,7 +30,10 @@
                                     <option selected disabled value> -- pilih gaji pokok-- </option>
                                     <?php foreach ($master as $value) { ?>
                                         <option value="<?= $value->id_master ?>" <?php if ($value->id_master == $id_master) { ?> selected <?php } ?>><?= $value->nama_master ?> - Rp <?= number_format($value->gaji_master, 0, ',', '.');  ?> - <?= $value->persen_pajak; ?>%
-                                        </option>
+
+                                        <!-- <option value="<?= $value->id_master ?>">
+                                            <?= $value->nama_master ?> - Rp <?= number_format($value->gaji_master, 0, ',', '.');  ?> - <?= $value->persen_pajak; ?>%
+                                        </option> -->
                                     <?php } ?>
                                 </select>
                             </div>

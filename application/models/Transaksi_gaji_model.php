@@ -16,7 +16,7 @@ class Transaksi_gaji_model extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('id_transaksi,id_karyawan,id_master,waktu_gaji,bonus_gaji,nominal_gaji, potongan_pajak,keterangan');
+        $this->datatables->select('id_transaksi,id_karyawan,id_master,waktu_gaji,bonus_gaji,nominal_gaji,persen_pajak, potongan_pajak,keterangan');
         $this->datatables->from('transaksi_gaji');
         //add this line for join
         //$this->datatables->join('table2', 'transaksi_gaji.field = table2.field');
@@ -31,23 +31,20 @@ class Transaksi_gaji_model extends CI_Model
     {
         // $this->db->order_by($this->id, $this->order);
         // return $this->db->get($this->table)->result();
+        
         $this->db->order_by($this->id, $this->order);
         $query = $this->db->select('*')
             ->from($this->table)
             ->join('karyawan', 'karyawan.id_karyawan = transaksi_gaji.id_karyawan', 'left')
-            ->join('master_gaji_pokok', 'master_gaji_pokok.id_master = transaksi_gaji.id_master', 'left')
+            // ->join('master_gaji_pokok', 'master_gaji_pokok.id_master = transaksi_gaji.id_master', 'left')
             ->get();
-
-        // print_r($query->result());
-        // die;
-        // return $this->db->get($this->table)->result();
         return $query->result();
     }
 
     // get data by id
     function get_by_id($id)
     {
-        $this->db->where($this->id, $id)->join('karyawan', 'transaksi_gaji.id_karyawan = karyawan.id_karyawan', 'left')->join('master_gaji_pokok', 'transaksi_gaji.id_master = master_gaji_pokok.id_master', 'left')->join('jabatan', 'karyawan.id_jabatan = jabatan.id_jabatan', 'left');
+        $this->db->where($this->id, $id)->join('karyawan', 'transaksi_gaji.id_karyawan = karyawan.id_karyawan', 'left')->join('jabatan', 'karyawan.id_jabatan = jabatan.id_jabatan', 'left');
         return $this->db->get($this->table)->row();
     }
 
@@ -60,10 +57,11 @@ class Transaksi_gaji_model extends CI_Model
     {
         $this->db->like('id_transaksi', $q);
         $this->db->or_like('id_karyawan', $q);
-        $this->db->or_like('id_master', $q);
+        // $this->db->or_like('id_master', $q);
         $this->db->or_like('waktu_gaji', $q);
         $this->db->or_like('bonus_gaji', $q);
         $this->db->or_like('nominal_gaji', $q);
+        $this->db->or_like('persen_pajak', $q);
         $this->db->or_like('potongan_pajak', $q);
         $this->db->or_like('keterangan', $q);
         $this->db->from($this->table);
@@ -76,10 +74,11 @@ class Transaksi_gaji_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id_transaksi', $q);
         $this->db->or_like('id_karyawan', $q);
-        $this->db->or_like('id_master', $q);
+        // $this->db->or_like('id_master', $q);
         $this->db->or_like('waktu_gaji', $q);
         $this->db->or_like('bonus_gaji', $q);
         $this->db->or_like('nominal_gaji', $q);
+        $this->db->or_like('persen_pajak', $q);
         $this->db->or_like('potongan_pajak', $q);
         $this->db->or_like('keterangan', $q);
         $this->db->limit($limit, $start);

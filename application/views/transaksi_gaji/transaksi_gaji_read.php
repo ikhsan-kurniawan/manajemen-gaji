@@ -23,10 +23,6 @@
 							<td width="20%"><b>Jabatan Karyawan</b></td>
 							<td><?= $jabatan; ?></td>
 						</tr>
-						<!-- <tr>
-							<td width="20%"><b>Nama Master</b></td>
-							<td><?= $nama_master; ?></td>
-						</tr> -->
 						<tr>
 							<td width="20%"><b>Nominal Gaji</b></td>
 							<td class="uang"><?= $nominal_gaji; ?></td>
