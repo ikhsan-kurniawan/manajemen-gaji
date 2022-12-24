@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2022 at 11:59 AM
+-- Generation Time: Dec 24, 2022 at 08:58 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -80,17 +80,18 @@ CREATE TABLE `karyawan` (
   `nama_karyawan` varchar(200) NOT NULL,
   `jenis_kelamin` varchar(200) NOT NULL,
   `alamat` varchar(200) NOT NULL,
-  `tanggal_lahir` date NOT NULL
+  `tanggal_lahir` date NOT NULL,
+  `status` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`id_karyawan`, `id_jabatan`, `nik`, `nama_karyawan`, `jenis_kelamin`, `alamat`, `tanggal_lahir`) VALUES
-(1, 7, '3305847586732229', 'Ikhsan Kurniawan', 'laki-laki', 'Kebumen', '2003-05-11'),
-(2, 5, '3304758695867112', 'Rian Kusdiono', 'laki-laki', 'Sokaraja', '2002-05-06'),
-(3, 8, '08977867676667', 'Ammar Daffa', 'laki-laki', 'Purowketo', '2022-10-03');
+INSERT INTO `karyawan` (`id_karyawan`, `id_jabatan`, `nik`, `nama_karyawan`, `jenis_kelamin`, `alamat`, `tanggal_lahir`, `status`) VALUES
+(1, 7, '3305847586732229', 'Ikhsan Kurniawan', 'laki-laki', 'Kebumen', '2003-05-11', 'nonaktif'),
+(2, 5, '3304758695867112', 'Rian Kusdiono', 'laki-laki', 'Sokaraja', '2002-05-06', 'aktif'),
+(4, 10, '123456787654321', 'Ammar Wisnu', 'laki-laki', 'Purwokerto', '2000-01-01', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,9 @@ CREATE TABLE `transaksi_gaji` (
 --
 
 INSERT INTO `transaksi_gaji` (`id_transaksi`, `id_karyawan`, `id_master`, `waktu_gaji`, `bonus_gaji`, `nominal_gaji`, `persen_pajak`, `potongan_pajak`, `keterangan`) VALUES
-(20, 1, 9, '2022-10', 2000000, 5100000, '11', 561000, 'gaji oktober');
+(20, 1, 9, '2022-10', 2100000, 5100000, '11', 561000, 'gaji oktober'),
+(25, 4, 9, '2022-12', 500000, 5100000, '11', 561000, 'gaji'),
+(26, 4, 7, '2022-11', 600000, 6000000, '5', 300000, 'gaji november');
 
 --
 -- Indexes for dumped tables
@@ -188,13 +191,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `master_gaji_pokok`
@@ -206,7 +209,7 @@ ALTER TABLE `master_gaji_pokok`
 -- AUTO_INCREMENT for table `transaksi_gaji`
 --
 ALTER TABLE `transaksi_gaji`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables

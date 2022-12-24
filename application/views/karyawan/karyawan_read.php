@@ -39,6 +39,10 @@
 							<td width="20%"><b>Tanggal Lahir</b></td>
 							<td><?= $tanggal_lahir; ?></td>
 						</tr>
+						<tr>
+							<td width="20%"><b>Status</b></td>
+							<td><?= $status; ?></td>
+						</tr>
 						<!-- <tr>
 							<td width="20%"><b>Username</b></td>
 							<td><?= $username; ?></td>
@@ -53,7 +57,13 @@
 							<i class="fa fa-pencil"></i> Ubah Data
 						</a>
 					</div> -->
-					<a href="<?= site_url('karyawan') ?>" class="btn btn-danger pull-right">
+					<a 
+					<?php if($status == "aktif"){ ?>
+						href="<?= site_url('karyawan') ?>"
+					<?php }else{ ?>
+						href="<?= site_url('karyawan/arsip') ?>"
+					<?php } ?>
+						class="btn btn-danger pull-right">
 						<i class="fa fa-sign-out"></i> Kembali
 					</a>
 				</div>

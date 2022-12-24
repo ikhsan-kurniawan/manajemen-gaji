@@ -7,6 +7,7 @@ class Karyawan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Karyawan_model');
+        $this->load->model('Transaksi_gaji_model');
         $this->load->library('form_validation');
         $this->load->library('datatables');
 
@@ -16,11 +17,26 @@ class Karyawan extends CI_Controller
     public function index()
     {
         $data = array(
-            'karyawan_data' => $this->Karyawan_model->get_all(),
+            'karyawan_data' => $this->Karyawan_model->get_active(),
         );
+        foreach ($data as $arr) {
+            foreach ($arr as $key) {
+                $cek = $this->Transaksi_gaji_model->cekRowId($key->id_karyawan);
+                $key->cek = $cek;
+            }
+        }
         // print_r($data);
         // die;
         $this->template->load('template', 'karyawan/karyawan_list', $data);
+    }
+
+    public function arsip()
+    {
+        $data = array(
+            'karyawan_data' => $this->Karyawan_model->get_nonactive(),
+        );
+
+        $this->template->load('template', 'karyawan/arsip_list', $data);
     }
 
     public function read($id)
@@ -35,6 +51,7 @@ class Karyawan extends CI_Controller
                 'jenis_kelamin' => $row->jenis_kelamin,
                 'alamat' => $row->alamat,
                 'tanggal_lahir' => $row->tanggal_lahir,
+                'status' => $row->status,
                 // 'username' => $row->username,
                 // 'password' => $row->password,
                 'nama_jabatan' => $row->nama_jabatan,
@@ -86,6 +103,7 @@ class Karyawan extends CI_Controller
                 'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
                 'alamat' => $this->input->post('alamat', TRUE),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir', TRUE),
+                'status' => 'aktif',
                 // 'username' => $this->input->post('username', TRUE),
                 // 'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
             );
@@ -138,6 +156,7 @@ class Karyawan extends CI_Controller
                 'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
                 'alamat' => $this->input->post('alamat', TRUE),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir', TRUE),
+                'status' => 'aktif',
                 // 'username' => $this->input->post('username', TRUE),
                 // 'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
             );
@@ -162,6 +181,58 @@ class Karyawan extends CI_Controller
         }
     }
 
+    public function nonaktif($id){
+        $row = $this->Karyawan_model->get_by_id($id);
+
+        $data = $this->db->where('id_karyawan', $id)->from('karyawan')->get()->result();
+        foreach ($data as $val){
+            $val->status = "nonaktif";
+            $new = array(
+                'id_jabatan' => $val->id_jabatan,
+                'nik' => $val->nik,
+                'nama_karyawan' => $val->nama_karyawan,
+                'jenis_kelamin' => $val->jenis_kelamin,
+                'alamat' => $val->alamat,
+                'tanggal_lahir' => $val->tanggal_lahir,
+                'status' => $val->status,
+            );
+        }
+        if ($row) {
+            $this->Karyawan_model->update($id, $new);
+            $this->session->set_flashdata('message', 'Berhasil Menonaktifkan Karyawan');
+            redirect(site_url('karyawan'));
+        } else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(site_url('karyawan'));
+        }
+    }
+
+    public function aktif($id){
+        $row = $this->Karyawan_model->get_by_id($id);
+
+        $data = $this->db->where('id_karyawan', $id)->from('karyawan')->get()->result();
+        foreach ($data as $val){
+            $val->status = "aktif";
+            $new = array(
+                'id_jabatan' => $val->id_jabatan,
+                'nik' => $val->nik,
+                'nama_karyawan' => $val->nama_karyawan,
+                'jenis_kelamin' => $val->jenis_kelamin,
+                'alamat' => $val->alamat,
+                'tanggal_lahir' => $val->tanggal_lahir,
+                'status' => $val->status,
+            );
+        }
+        if ($row) {
+            $this->Karyawan_model->update($id, $new);
+            $this->session->set_flashdata('message', 'Berhasil Mengaktifkan Karyawan');
+            redirect(site_url('karyawan/arsip'));
+        } else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(site_url('karyawan/arsip'));
+        }
+    }
+    
     public function _rules()
     {
         $this->form_validation->set_rules('id_jabatan', 'id jabatan', 'trim|required');

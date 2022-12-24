@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller
 			'jumlah_jabatan'     =>   $this->Jabatan_model->jumlah(),
 			'jumlah_master'     =>   $this->Master_gaji_pokok_model->jumlah(),
 			'jumlah_transaksi'     =>   $this->Transaksi_gaji_model->jumlah(),
-			'jumlah_karyawan'     =>   $this->Karyawan_model->jumlah(),
+			'jumlah_karyawan'     =>   $this->Karyawan_model->jumlah_aktif(),
 		);
 		$this->template->load('template', 'dashboard', $data);
 	}

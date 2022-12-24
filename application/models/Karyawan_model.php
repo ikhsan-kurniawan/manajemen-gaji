@@ -16,7 +16,7 @@ class Karyawan_model extends CI_Model
     // datatables
     function json()
     {
-        $this->datatables->select('id_karyawan,id_jabatan,nik,nama_karyawan,jenis_kelamin,alamat,tanggal_lahir');
+        $this->datatables->select('id_karyawan,id_jabatan,nik,nama_karyawan,jenis_kelamin,alamat,tanggal_lahir,status');
         $this->datatables->from('karyawan');
         //add this line for join
         //$this->datatables->join('table2', 'karyawan.field = table2.field');
@@ -42,6 +42,18 @@ class Karyawan_model extends CI_Model
         return $query->result();
     }
 
+    function get_active(){
+        $this->db->order_by($this->id, $this->order);
+        $this->db->where('status', 'aktif')->join('jabatan', 'jabatan.id_jabatan = karyawan.id_jabatan', 'left');
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_nonactive(){
+        $this->db->order_by($this->id, $this->order);
+        $this->db->where('status', 'nonaktif')->join('jabatan', 'jabatan.id_jabatan = karyawan.id_jabatan', 'left');
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
@@ -57,6 +69,12 @@ class Karyawan_model extends CI_Model
 
     function jumlah(){
         return $this->db->count_all_results($this->table);
+    }
+
+    function jumlah_aktif(){
+        $query = $this->db->where('status', 'aktif');
+        $this->db->from($this->table);
+        return $query->count_all_results();
     }
 
     // get total rows
