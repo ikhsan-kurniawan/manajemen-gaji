@@ -28,6 +28,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div style="padding-left: 15px; padding-bottom: 15px;">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-blue"><i class="fa fa-archive" aria-hidden="true"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Status</span>
+                                    <span class="info-box-number"><?= $status; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive" style="padding: 15px">
                     <table class="table table-bordered" id="mytable">

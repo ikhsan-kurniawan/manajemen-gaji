@@ -51,6 +51,7 @@ class Laporan extends CI_Controller
             'baris_gaji' => $query->num_rows(),
             'nama_karyawan' => $nama[0]->nama_karyawan,
             'jabatan' => $nama[0]->nama_jabatan,
+            'status' => $nama[0]->status,
         ); 
 
         // print_r($data);
