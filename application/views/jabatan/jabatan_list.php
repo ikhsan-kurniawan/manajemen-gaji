@@ -27,7 +27,19 @@
 								<td style="text-align:center">
                                     <a href="<?= site_url('jabatan/read/'.$jabatan->id_jabatan) ?>" title="Lihat Detail Data"class="btn btn-success"><i class="fa fa-eye"></i></a>
                                     <a href="<?= site_url('jabatan/update/'.$jabatan->id_jabatan) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
-                                    <a href="<?= site_url('jabatan/delete/'.$jabatan->id_jabatan) ?>" title="Hapus Data" class="btn btn-danger"  onclick="javascript: return confirm('Apakah anda yakin ingin menghapus data ini ?')"><i class="fa fa-trash-o"></i></a>
+                                    <a 
+                                    <?php if($jabatan->cek >= 1){ ?>
+                                        title="Hapus Data" class="btn btn-danger"
+                                        disabled
+                                        onclick="javascript: return alert('Karyawan memiliki jabatan ini')"
+                                    <?php }else{ ?>
+                                        href="<?= site_url('jabatan/delete/'.$jabatan->id_jabatan) ?>"
+                                        title="Hapus Data" class="btn btn-danger"
+                                        onclick="javascript: return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                    <?php } ?>
+                                    >
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
                                 </td>
                             </tr>
 						<?php } ?>

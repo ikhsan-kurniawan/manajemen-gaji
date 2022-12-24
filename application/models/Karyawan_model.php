@@ -49,6 +49,12 @@ class Karyawan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    function cekRowId($id){
+        $query = $this->db->where('id_jabatan', $id);
+        $this->db->from($this->table);
+        return $query->count_all_results();
+    }
+
     function jumlah(){
         return $this->db->count_all_results($this->table);
     }

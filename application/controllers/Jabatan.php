@@ -7,6 +7,7 @@ class Jabatan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Jabatan_model');
+        $this->load->model('Karyawan_model');
         $this->load->library('form_validation');
         $this->load->library('datatables');
 
@@ -18,6 +19,12 @@ class Jabatan extends CI_Controller
         $data = array(
             'jabatan_data' => $this->Jabatan_model->get_all(),
         );
+        foreach ($data as $arr) {
+            foreach ($arr as $key) {
+                $cek = $this->Karyawan_model->cekRowId($key->id_jabatan);
+                $key->cek = $cek;
+            }
+        }
         $this->template->load('template', 'jabatan/jabatan_list', $data);
     }
 
